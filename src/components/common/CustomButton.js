@@ -14,10 +14,10 @@ const CustomButton = ({ text, iconLeft = false, onPressedBtn }) => {
     <ButtonGroup>
       <Button
         width="$full"
-        bgColor={isHovered ? '#2B6CB0' : '#3c91e6'} // Cambio de color al presionar
+        bgColor={isHovered ? '#2B6CB0' : '#3c91e6'}
         onPress={onPressedBtn}
-        onPressIn={() => setIsHovered(true)} // Simula hover al tocar
-        onPressOut={() => setIsHovered(false)} // Vuelve al color original al soltar
+        onPressIn={() => setIsHovered(true)}
+        onPressOut={() => setIsHovered(false)}
         flexDirection="row"
         alignItems="center"
       >
