@@ -4,6 +4,7 @@ import { GluestackUIProvider, VStack } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/config';
 import Tabs from './src/components/layout/Tabs';
 import Header from './src/components/layout/Header';
+import Loading from './src/components/layout/Loading';
 
 export default function App() {
   return (
@@ -11,6 +12,7 @@ export default function App() {
       <GluestackUIProvider config={config}>
         <Header />
         <Tabs />
+        <Loading />
       </GluestackUIProvider>
     </SafeAreaProvider>
   );
