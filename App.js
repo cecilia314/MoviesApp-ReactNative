@@ -1,20 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { GluestackUIProvider, VStack } from '@gluestack-ui/themed';
+import { config } from '@gluestack-ui/config';
+import CustomSelectInput from './src/components/common/CustomSelectInput';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <GluestackUIProvider config={config}>
+        <StatusBar style="auto" />
+        <VStack marginTop="50">
+          <CustomSelectInput />
+        </VStack>
+      </GluestackUIProvider>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
