@@ -33,7 +33,7 @@ yarn-error.*
 .env*.local
 
 # config/
-apiCongig.js
+apiConfig.js
 
 # typescript
 *.tsbuildinfo
