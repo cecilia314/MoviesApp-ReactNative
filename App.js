@@ -1,19 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { Center, GluestackUIProvider, VStack } from '@gluestack-ui/themed';
+import { GluestackUIProvider, VStack } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/config';
-import CustomButton from './src/components/common/CustomButton';
-import DetailsCard from './src/components/common/DetailsCard';
+import CustomSelectInput from './src/components/common/CustomSelectInput';
 
 export default function App() {
   return (
     <SafeAreaProvider>
       <GluestackUIProvider config={config}>
         <StatusBar style="auto" />
-        <VStack>
-          <CustomButton text="Boton" iconLeft="true" />
-          <DetailsCard />
+        <VStack marginTop="50">
+          <CustomSelectInput />
         </VStack>
       </GluestackUIProvider>
     </SafeAreaProvider>
