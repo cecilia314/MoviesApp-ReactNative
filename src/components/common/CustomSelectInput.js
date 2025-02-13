@@ -15,10 +15,8 @@ import {
 } from '@gluestack-ui/themed';
 import { ChevronDownIcon, CheckIcon } from '@gluestack-ui/themed';
 
-const options = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
-
-const CustomSelectInput = ({ mediaOptions = options }) => {
-  const [newOption, setNewOption] = useState(mediaOptions[0]);
+const CustomSelectInput = ({ mediaOptions, onInputChange, defaultOption }) => {
+  const [newOption, setNewOption] = useState(defaultOption);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -34,7 +32,9 @@ const CustomSelectInput = ({ mediaOptions = options }) => {
           borderColor="black"
         >
           <ButtonText fontWeight="$bold" paddingHorizontal="$1" color="black">
-            {newOption}
+            {newOption
+              .replace(/_/g, ' ')
+              .replace(/\b\w/g, (char) => char.toUpperCase())}
           </ButtonText>
           <ButtonIcon as={ChevronDownIcon} color="black" />
         </Button>
@@ -46,11 +46,12 @@ const CustomSelectInput = ({ mediaOptions = options }) => {
           <ActionsheetDragIndicatorWrapper marginBottom="8">
             <ActionsheetDragIndicator />
           </ActionsheetDragIndicatorWrapper>
-          {options.map((option, index) => (
+          {mediaOptions.map((option, index) => (
             <ActionsheetItem
               key={index}
               onPress={() => {
                 setNewOption(option);
+                onInputChange(option);
                 setIsOpen(false);
               }}
               backgroundColor={newOption === option ? '#A5B452' : 'transparent'}
@@ -58,9 +59,10 @@ const CustomSelectInput = ({ mediaOptions = options }) => {
               <ActionsheetItemText
                 color={newOption === option ? 'white' : 'black'}
               >
-                {option}
+                {option
+                  .replace(/_/g, ' ')
+                  .replace(/\b\w/g, (char) => char.toUpperCase())}
               </ActionsheetItemText>
-
               {newOption === option && (
                 <ActionsheetIcon as={CheckIcon} color="white" size="xl" />
               )}
