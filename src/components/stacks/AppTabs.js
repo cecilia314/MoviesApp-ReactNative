@@ -12,7 +12,7 @@ const Stack = createNativeStackNavigator();
 const MoviesStack = () => (
   <Stack.Navigator>
     <Stack.Screen
-      name="Movies"
+      name="Movies list"
       component={MoviesScreen}
       options={{ headerShown: false }}
     />
@@ -48,7 +48,7 @@ const SearchStack = () => (
 const TvShowsStack = () => (
   <Stack.Navigator>
     <Stack.Screen
-      name="Tv Shows"
+      name="Tv Shows list"
       component={TvShowsScreen}
       options={{ headerShown: false }}
     />

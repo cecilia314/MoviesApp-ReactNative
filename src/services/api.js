@@ -14,9 +14,7 @@ export const getMovies = async (category) => {
     const response = await axiosInstance.get(`/movie/${category}`, {
       params: { language: 'en-US', page: 1 },
     });
-
-    console.log('Movies:', response.data);
-    return response.data;
+    return response.data.results;
   } catch (error) {
     console.error(
       'Error fetching movies:',
@@ -31,8 +29,6 @@ export const getMovieDetail = async (movie_id) => {
     const response = await axiosInstance.get(`/movie/${movie_id}`, {
       params: { language: 'en-US' },
     });
-
-    console.log('Movie detail:', response.data);
     return response.data;
   } catch (error) {
     console.error(
@@ -50,7 +46,7 @@ export const getTvSeries = async (category) => {
     });
 
     console.log('TV Series:', response.data);
-    return response.data;
+    return response.data.results;
   } catch (error) {
     console.error(
       'Error fetching TV series:',
@@ -65,8 +61,6 @@ export const getTvSerieDetail = async (serie_id) => {
     const response = await axiosInstance.get(`/tv/${serie_id}`, {
       params: { language: 'en-US' },
     });
-
-    console.log('TV Series detail:', response.data);
     return response.data;
   } catch (error) {
     console.error(
@@ -87,9 +81,7 @@ export const getSearch = async (category, keyword) => {
         page: 1,
       },
     });
-
-    console.log('Search results:', response.data);
-    return response.data;
+    return response.data.results;
   } catch (error) {
     console.error(
       'Error fetching search results:',
