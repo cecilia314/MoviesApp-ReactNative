@@ -11,7 +11,7 @@ const MediaList = (props) => {
       renderItem={({ item }) => (
         <MediaCard
           navigation={navigation}
-          title={item.title}
+          title={item.title || item.name}
           image={
             'https://media.themoviedb.org/t/p/w94_and_h141_bestv2' +
             item.poster_path

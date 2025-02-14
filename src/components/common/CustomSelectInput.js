@@ -23,7 +23,7 @@ const CustomSelectInput = ({ mediaOptions, onInputChange, defaultOption }) => {
     <>
       <ButtonGroup>
         <Button
-          width="$full"
+          width="$3/5"
           variant="outline"
           onPress={() => setIsOpen(true)}
           flexDirection="row"

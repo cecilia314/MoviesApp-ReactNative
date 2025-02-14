@@ -13,7 +13,7 @@ const MoviesContainer = ({ navigation }) => {
   const [movies, setMovies] = useState(null);
 
   const fetchMovies = async (selectedCategory) => {
-    if (!selectedCategory) return;
+    // if (!selectedCategory) return;
 
     setIsLoading(true);
     try {
@@ -31,7 +31,7 @@ const MoviesContainer = ({ navigation }) => {
   }, []);
 
   return (
-    <Center>
+    <Center mx="$2" my="$4" gap="$4">
       <CustomSelectInput
         mediaOptions={['now_playing', 'popular', 'top_rated', 'upcoming']}
         onInputChange={(newCategory) => {

@@ -22,9 +22,13 @@ const MoviesStack = () => (
       component={ShowScreen}
       options={({ route }) => ({
         title: route.params.label,
-        headerBackTitle: 'Back to List',
-
-        tabBarStyle: { display: 'none' },
+        headerTitle: 'Back to List',
+        headerTintColor: 'blue',
+        headerTitleStyle: {
+          fontSize: 14,
+        },
+        // headerBackTitle: 'Back to List',
+        // tabBarStyle: { display: 'none' },
       })}
     />
   </Stack.Navigator>
@@ -68,7 +72,7 @@ const TvShowsStack = () => (
 
 const AppTabs = () => (
   <NavigationContainer>
-    <TabStack.Navigator>
+    <TabStack.Navigator screenOptions={{ headerShadowVisible: false }}>
       <TabStack.Screen name="Movies" component={MoviesStack} />
       <TabStack.Screen name="Search Results" component={SearchStack} />
       <TabStack.Screen name="Tv Shows" component={TvShowsStack} />
