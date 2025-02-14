@@ -2,7 +2,7 @@ import { FlatList } from '@gluestack-ui/themed';
 import MediaCard from '../common/MediaCard';
 
 const MediaList = (props) => {
-  const { navigation, media } = props;
+  const { navigation, media, mediaType } = props;
 
   return (
     <FlatList
@@ -18,6 +18,8 @@ const MediaList = (props) => {
           }
           popularity={item.popularity}
           releaseDate={item.release_date}
+          mediaId={item.id}
+          mediaType={mediaType}
         />
       )}
     />

@@ -44,7 +44,7 @@ const MoviesContainer = ({ navigation }) => {
       {isLoading ? (
         <Loading />
       ) : (
-        <MediaList navigation={navigation} media={movies} />
+        <MediaList navigation={navigation} media={movies} mediaType="movie" />
       )}
     </Center>
   );

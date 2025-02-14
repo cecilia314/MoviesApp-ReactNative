@@ -16,12 +16,15 @@ const MoviesStack = () => (
       component={MoviesScreen}
       options={{ headerShown: false }}
     />
+
     <Stack.Screen
       name="Show"
       component={ShowScreen}
       options={({ route }) => ({
         title: route.params.label,
         headerBackTitle: 'Back to List',
+
+        tabBarStyle: { display: 'none' },
       })}
     />
   </Stack.Navigator>

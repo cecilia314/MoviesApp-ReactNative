@@ -12,9 +12,10 @@ const MediaCard = ({
   navigation,
   title = 'Movie title',
   image = '../../assets/splash-icon',
-  url,
   popularity = '',
   releaseDate = '',
+  mediaId,
+  mediaType,
 }) => {
   return (
     <Card p="$5" m="$1.5" borderRadius="$lg">
@@ -62,7 +63,9 @@ const MediaCard = ({
 
           <CustomButton
             text="More Details"
-            onPressedBtn={() => navigation.navigate('Show', { url })}
+            onPressedBtn={() =>
+              navigation.navigate('Show', { mediaId, mediaType })
+            }
           />
         </VStack>
       </HStack>

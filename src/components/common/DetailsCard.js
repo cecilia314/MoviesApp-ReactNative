@@ -13,37 +13,37 @@ import {
 const { height } = Dimensions.get('window');
 
 const DetailsCard = ({
-  navigation,
   title = 'Movie/TV title',
   image = '../../assets/splash-icon',
-  description = 'Loading description ... bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ',
+  description = 'Loading description ...',
   popularity = '',
   releaseDate = '',
 }) => {
   return (
     <ScrollView>
       <Center bgColor="#E8E9F3" flex={1} padding="$4">
-        <Heading size="2xl" fontFamily="heading" marginVertical="$4">
+        <Heading
+          size="2xl"
+          fontFamily="heading"
+          marginVertical="$4"
+          textAlign="center"
+        >
           {title}
         </Heading>
 
-        <VStack mb="$6" flex={1} width="100%">
+        <VStack mb="$6" flex={1} width="100%" gap="$4">
           {/* Image with half-screen height */}
           <Image
             height={height * 0.4}
             width="full"
             marginVertical="$1.5"
-            marginHorizontal="$8"
+            marginHorizontal="$12"
             borderRadius="$md"
-            source={
-              image.startsWith('http')
-                ? { uri: image }
-                : require('../../../assets/icon.png')
-            }
+            source={image}
             alt="Media poster"
           />
 
-          <VStack flex={1} marginHorizontal="$4">
+          <VStack flex={1} marginHorizontal="$4" gap="$2">
             <Text
               fontSize="$sm"
               fontFamily="$heading"
