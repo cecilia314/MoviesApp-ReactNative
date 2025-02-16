@@ -64,7 +64,7 @@ const MediaCard = ({
           <CustomButton
             text="More Details"
             onPressedBtn={() =>
-              navigation.navigate('Show', { mediaId, mediaType })
+              navigation.navigate('Show', { mediaId, mediaType, title })
             }
           />
         </VStack>

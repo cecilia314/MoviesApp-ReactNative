@@ -3,7 +3,7 @@ import { GluestackUIProvider, VStack, Text } from '@gluestack-ui/themed';
 import { config } from '@gluestack-ui/config';
 import Header from './src/components/layout/Header';
 import { getMovies } from './src/services/api';
-import AppTabs from './src/components/stacks/AppTabs';
+import AppStack from './src/components/stacks/AppStack';
 
 const fetchMovies = () => {
   getMovies('popular')
@@ -16,7 +16,7 @@ export default function App() {
     <SafeAreaProvider>
       <GluestackUIProvider config={config}>
         <Header />
-        <AppTabs />
+        <AppStack />
       </GluestackUIProvider>
     </SafeAreaProvider>
   );
