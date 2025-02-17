@@ -72,6 +72,7 @@ export const getTvSerieDetail = async (serie_id) => {
 };
 
 export const getSearch = async (category, keyword) => {
+  console.log('PARAMETROS:', category, keyword);
   try {
     const response = await axiosInstance.get(`/search/${category}`, {
       params: {

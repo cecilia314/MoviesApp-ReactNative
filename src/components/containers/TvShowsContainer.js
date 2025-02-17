@@ -16,7 +16,9 @@ const TvShowsContainer = ({ navigation }) => {
   const fetchTvShow = async (selectedCategory) => {
     setIsLoading(true);
     getTvSeries(selectedCategory).then((data) => {
-      setTvShow(data).catch((err) => console.error('API Error:', err));
+      setTvShow(data).catch((err) =>
+        console.error('Error fetching Tv Shows:', err)
+      );
     });
     setIsLoading(false);
   };
@@ -26,7 +28,7 @@ const TvShowsContainer = ({ navigation }) => {
   }, []);
 
   return (
-    <Center mx="$2" my="$4" gap="$4">
+    <Center mx="$2" mt="$4" gap="$12">
       <CustomSelectInput
         mediaOptions={['airing_today', 'on_the_air', 'popular', 'top_rated']}
         onInputChange={(newCategory) => {

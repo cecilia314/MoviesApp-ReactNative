@@ -13,17 +13,15 @@ const MoviesContainer = ({ navigation }) => {
   const [movies, setMovies] = useState(null);
 
   const fetchMovies = async (selectedCategory) => {
-    // if (!selectedCategory) return;
+    if (!selectedCategory) return;
 
     setIsLoading(true);
-    try {
-      const response = await getMovies(selectedCategory);
-      setMovies(response);
-    } catch (error) {
-      console.error('Error fetching movies:', error);
-    } finally {
-      setIsLoading(false);
-    }
+    getMovies(selectedCategory).then((data) => {
+      setMovies(data).catch((err) =>
+        console.error('Error fetching movies:', err)
+      );
+    });
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -31,7 +29,7 @@ const MoviesContainer = ({ navigation }) => {
   }, []);
 
   return (
-    <Center mx="$2" my="$4" gap="$4">
+    <Center mx="$2" mt="$4" gap="$12">
       <CustomSelectInput
         mediaOptions={['now_playing', 'popular', 'top_rated', 'upcoming']}
         onInputChange={(newCategory) => {

@@ -6,7 +6,7 @@ const MediaList = (props) => {
 
   return (
     <FlatList
-      width="$full"
+      width="100%"
       data={media}
       renderItem={({ item }) => (
         <MediaCard
@@ -19,9 +19,10 @@ const MediaList = (props) => {
           popularity={item.popularity}
           releaseDate={item.release_date}
           mediaId={item.id}
-          mediaType={mediaType}
+          mediaType={mediaType === 'multi' ? item.media_type : mediaType}
         />
       )}
+      contentContainerStyle={{ paddingBottom: 60 }}
     />
   );
 };

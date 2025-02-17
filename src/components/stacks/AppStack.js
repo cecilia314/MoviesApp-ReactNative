@@ -11,7 +11,9 @@ const TabStack = createMaterialTopTabNavigator();
 
 const TabNavigator = () => (
   <TabStack.Navigator
+    initialRouteName="Movies"
     screenOptions={{
+      lazy: true,
       tabBarIndicatorStyle: {
         backgroundColor: '#272635',
         height: 3,
@@ -26,9 +28,17 @@ const TabNavigator = () => (
       },
     }}
   >
-    <TabStack.Screen name="Movies" component={MoviesScreen} />
-    <TabStack.Screen name="Search Results" component={SearchScreen} />
-    <TabStack.Screen name="Tv Shows" component={TvShowsScreen} />
+    <TabStack.Screen name="Movies" component={MoviesScreen} key="MoviesKey" />
+    <TabStack.Screen
+      name="Search Results"
+      component={SearchScreen}
+      key="SearchKey"
+    />
+    <TabStack.Screen
+      name="Tv Shows"
+      component={TvShowsScreen}
+      key="TvShowsKey"
+    />
   </TabStack.Navigator>
 );
 
