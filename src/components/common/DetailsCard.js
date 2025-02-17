@@ -14,7 +14,8 @@ const { height } = Dimensions.get('window');
 
 const DetailsCard = ({
   title = 'Movie/TV title',
-  description = 'Loading description ...',
+  image = '../../../assets/movie-poster.png',
+  description = '',
   popularity = '',
   releaseDate = '',
 }) => {
@@ -37,7 +38,11 @@ const DetailsCard = ({
             marginVertical="$1.5"
             marginHorizontal="$12"
             borderRadius="$md"
-            source={require('../../../assets/movie-poster.png')}
+            source={
+              /\.(jpg|jpeg|png|svg)$/i.test(image)
+                ? { uri: image }
+                : require('../../../assets/movie-poster.png')
+            }
             alt="Media poster"
           />
 

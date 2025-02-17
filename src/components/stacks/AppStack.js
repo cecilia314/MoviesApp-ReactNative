@@ -1,46 +1,39 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { Platform } from 'react-native';
 import MoviesScreen from '../screens/MoviesScreen';
 import SearchScreen from '../screens/SearchScreen';
 import TvShowsScreen from '../screens/TvShowsScreen';
 import ShowScreen from '../screens/ShowScreen';
+import Tabs from '../layout/Tabs';
 
 const Stack = createNativeStackNavigator();
-const TabStack = createMaterialTopTabNavigator();
+const TopTabs = createMaterialTopTabNavigator();
 
-const TabNavigator = () => (
-  <TabStack.Navigator
-    initialRouteName="Movies"
-    screenOptions={{
-      lazy: true,
-      tabBarIndicatorStyle: {
-        backgroundColor: '#272635',
-        height: 3,
-      },
-      tabBarActiveTintColor: '#272635',
-      tabBarInactiveTintColor: 'gray',
-      tabBarLabelStyle: {
-        fontSize: 13,
-      },
-      tabBarStyle: {
-        backgroundColor: '#fff',
-      },
-    }}
-  >
-    <TabStack.Screen name="Movies" component={MoviesScreen} key="MoviesKey" />
-    <TabStack.Screen
-      name="Search Results"
-      component={SearchScreen}
-      key="SearchKey"
-    />
-    <TabStack.Screen
-      name="Tv Shows"
-      component={TvShowsScreen}
-      key="TvShowsKey"
-    />
-  </TabStack.Navigator>
-);
+const TabNavigator = () => {
+  if (Platform.OS === 'ios') {
+    return <Tabs />;
+  } else {
+    return (
+      <TopTabs.Navigator
+        initialRouteName="Movies"
+        screenOptions={{
+          lazy: false,
+          tabBarIndicatorStyle: { backgroundColor: '#272635', height: 3 },
+          tabBarActiveTintColor: '#272635',
+          tabBarInactiveTintColor: 'gray',
+          tabBarLabelStyle: { fontSize: 13 },
+          tabBarStyle: { backgroundColor: '#fff' },
+        }}
+      >
+        <TopTabs.Screen name="Movies" component={MoviesScreen} />
+        <TopTabs.Screen name="Search" component={SearchScreen} />
+        <TopTabs.Screen name="TV Shows" component={TvShowsScreen} />
+      </TopTabs.Navigator>
+    );
+  }
+};
 
 const AppStack = () => (
   <NavigationContainer>
