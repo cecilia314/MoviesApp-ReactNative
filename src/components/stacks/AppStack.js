@@ -48,7 +48,19 @@ const AppStack = () => (
       <Stack.Screen
         name="HomeTabs"
         component={TabNavigator}
-        options={{ headerShown: false }}
+        options={{
+          headerShown: true,
+          headerTitle: 'Movies App',
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            color: '#E8E9F3',
+            fontSize: 20,
+            fontWeight: 'bold',
+          },
+          headerStyle: {
+            backgroundColor: '#272635',
+          },
+        }}
       />
 
       <Stack.Screen

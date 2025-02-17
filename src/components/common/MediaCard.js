@@ -11,7 +11,7 @@ import CustomButton from './CustomButton';
 const MediaCard = ({
   navigation,
   title = 'Movie title',
-  image = '../../assets/splash-icon',
+  image = '../../../assets/movie-poster.png',
   popularity = '',
   releaseDate = '',
   mediaId,
@@ -25,12 +25,13 @@ const MediaCard = ({
           flex={1}
           borderRadius="$md"
           source={
-            image.startsWith('https')
+            /\.(jpg|jpeg|png|svg)$/i.test(image)
               ? { uri: image }
-              : require('../../../assets/icon.png')
+              : require('../../../assets/movie-poster.png')
           }
           alt="Media poster"
         />
+
         <VStack flex={2} gap="$2">
           <Heading size="sm" fontFamily="heading">
             {title}

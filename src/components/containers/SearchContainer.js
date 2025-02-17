@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import React from 'react';
-import Form from '../forms/Form';
 import { Center, Text, VStack } from '@gluestack-ui/themed';
+import Form from '../forms/Form';
 import Loading from '../layout/Loading';
 import MediaList from '../lists/MediaList';
 import { getSearch } from '../../services/api';
@@ -27,6 +27,7 @@ const SearchContainer = ({ navigation }) => {
       console.error('API Error:', err);
     } finally {
       setIsLoading(false);
+      setKeyword('');
     }
   };
 
@@ -38,6 +39,7 @@ const SearchContainer = ({ navigation }) => {
         onSubmit={fetchMediaShow}
         mediaOptions={['movie', 'multi', 'tv']}
         defaultOption={DEFAULT_CATEGORY}
+        keyword={keyword}
       />
 
       {!initialSearch ? (

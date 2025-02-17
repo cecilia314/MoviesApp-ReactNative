@@ -20,6 +20,7 @@ const Form = ({
   onSubmit,
   mediaOptions,
   defaultOption,
+  keyword,
 }) => {
   return (
     <VStack width="100%" p="$4" my="$2">
@@ -36,6 +37,7 @@ const Form = ({
               <Icon as={SearchIcon} size="sm" />
             </InputIcon>
             <InputField
+              value={keyword}
               onChangeText={onInputTextChange}
               placeholder="i.e. James Bond, Game of Thrones"
             />
