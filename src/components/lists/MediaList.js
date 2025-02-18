@@ -1,13 +1,21 @@
-import { FlatList } from '@gluestack-ui/themed';
+import { FlatList, Box } from '@gluestack-ui/themed';
 import MediaCard from '../common/MediaCard';
+import CustomButton from '../common/CustomButton';
 
-const MediaList = (props) => {
-  const { navigation, media, mediaType } = props;
+const MediaList = ({
+  navigation,
+  media,
+  mediaType,
+  numberOfItems = 10,
+  showMoreButton = true,
+  onShowMore,
+}) => {
+  const limitedMedia = media?.slice(0, numberOfItems);
 
   return (
     <FlatList
       width="100%"
-      data={media}
+      data={limitedMedia}
       renderItem={({ item }) => (
         <MediaCard
           navigation={navigation}
@@ -22,7 +30,14 @@ const MediaList = (props) => {
           mediaType={mediaType === 'multi' ? item.media_type : mediaType}
         />
       )}
-      contentContainerStyle={{ paddingBottom: 60 }}
+      contentContainerStyle={{ paddingBottom: 40 }}
+      ListFooterComponent={
+        showMoreButton && media?.length > numberOfItems ? (
+          <Box mt="$4" alignItems="center" mx="$8">
+            <CustomButton text="Show More" onPressedBtn={onShowMore} />
+          </Box>
+        ) : null
+      }
     />
   );
 };

@@ -32,7 +32,7 @@ const SearchContainer = ({ navigation }) => {
   };
 
   return (
-    <VStack>
+    <VStack h="$full">
       <Form
         onInputTextChange={setKeyword}
         onInputCategoryChange={setCategory}
@@ -55,6 +55,8 @@ const SearchContainer = ({ navigation }) => {
           navigation={navigation}
           media={mediaShow}
           mediaType={category}
+          numberOfItems={20}
+          showMoreButton={false}
         />
       )}
     </VStack>

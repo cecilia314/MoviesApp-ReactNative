@@ -6,6 +6,7 @@ import MoviesScreen from '../screens/MoviesScreen';
 import SearchScreen from '../screens/SearchScreen';
 import TvShowsScreen from '../screens/TvShowsScreen';
 import ShowScreen from '../screens/ShowScreen';
+import ShowAllScreen from '../screens/ShowAllScreen';
 import Tabs from '../layout/Tabs';
 
 const Stack = createNativeStackNavigator();
@@ -62,6 +63,19 @@ const AppStack = () => (
         options={({ route }) => ({
           headerTitleStyle: { fontSize: 14 },
           title: route.params.title,
+          headerBackTitle: 'Back to List',
+          headerBackTitleVisible: true,
+        })}
+      />
+
+      <Stack.Screen
+        name="ShowAll"
+        component={ShowAllScreen}
+        options={({ route }) => ({
+          headerTitleStyle: { fontSize: 14 },
+          title: route.params.category
+            .replace(/_/g, ' ')
+            .replace(/\b\w/g, (char) => char.toUpperCase()),
           headerBackTitle: 'Back to List',
           headerBackTitleVisible: true,
         })}

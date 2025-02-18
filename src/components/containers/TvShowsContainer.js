@@ -1,7 +1,6 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getTvSeries } from '../../services/api';
-import { Center, VStack } from '@gluestack-ui/themed';
+import { Center } from '@gluestack-ui/themed';
 import MediaList from '../lists/MediaList';
 import Loading from '../layout/Loading';
 import CustomSelectInput from '../common/CustomSelectInput';
@@ -14,12 +13,15 @@ const TvShowsContainer = ({ navigation }) => {
   const [tvShow, setTvShow] = useState(null);
 
   const fetchTvShow = async (selectedCategory) => {
+    if (!selectedCategory) return;
+
     setIsLoading(true);
-    getTvSeries(selectedCategory).then((data) => {
-      setTvShow(data).catch((err) =>
-        console.error('Error fetching Tv Shows:', err)
-      );
-    });
+    try {
+      const data = await getTvSeries(selectedCategory);
+      setTvShow(data);
+    } catch (err) {
+      console.error('Error fetching Tv Shows:', err);
+    }
     setIsLoading(false);
   };
 
@@ -27,8 +29,12 @@ const TvShowsContainer = ({ navigation }) => {
     fetchTvShow(category);
   }, []);
 
+  const handleShowMore = () => {
+    navigation.navigate('ShowAll', { category, mediaType: 'tv' });
+  };
+
   return (
-    <Center mx="$2" mt="$4" gap="$12">
+    <Center mx="$2" mt="$4" gap="$12 " h="$full">
       <CustomSelectInput
         mediaOptions={['airing_today', 'on_the_air', 'popular', 'top_rated']}
         onInputChange={(newCategory) => {
@@ -41,7 +47,12 @@ const TvShowsContainer = ({ navigation }) => {
       {isLoading ? (
         <Loading />
       ) : (
-        <MediaList navigation={navigation} media={tvShow} mediaType="tv" />
+        <MediaList
+          navigation={navigation}
+          media={tvShow}
+          mediaType="tv"
+          onShowMore={handleShowMore}
+        />
       )}
     </Center>
   );

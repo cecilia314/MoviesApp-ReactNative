@@ -10,6 +10,9 @@ import {
   InputIcon,
   SearchIcon,
   VStack,
+  useToast,
+  Toast,
+  ToastDescription,
 } from '@gluestack-ui/themed';
 import CustomSelectInput from '../common/CustomSelectInput';
 import CustomButton from '../common/CustomButton';
@@ -22,12 +25,29 @@ const Form = ({
   defaultOption,
   keyword,
 }) => {
+  const toast = useToast();
+
+  const handleSearch = () => {
+    if (!keyword.trim()) {
+      toast.show({
+        placement: 'bottom',
+        render: () => (
+          <Toast action="warning">
+            <ToastDescription>Type a title in the box</ToastDescription>
+          </Toast>
+        ),
+      });
+      return;
+    }
+    onSubmit();
+  };
+
   return (
     <VStack width="100%" p="$4" my="$2">
       <FormControl isRequired>
         <FormControl.Label fontSize="sm">
           <FormControlLabelText>
-            Search Movie/ Tv Show Name
+            Search Movie/ TV Show Name
           </FormControlLabelText>
         </FormControl.Label>
 
@@ -56,11 +76,12 @@ const Form = ({
             defaultOption={defaultOption}
             onInputChange={onInputCategoryChange}
           />
+
           <CustomButton
             flex={1}
             text="Search"
             iconLeft={SearchIcon}
-            onPressedBtn={onSubmit}
+            onPressedBtn={handleSearch}
           />
         </HStack>
 
