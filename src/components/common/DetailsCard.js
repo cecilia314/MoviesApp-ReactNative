@@ -13,72 +13,51 @@ import {
 const { height } = Dimensions.get('window');
 
 const DetailsCard = ({
-  navigation,
   title = 'Movie/TV title',
-  image = '../../assets/splash-icon',
-  description = 'Loading description ... bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla ',
+  image = '../../../assets/movie-poster.png',
+  description = '',
   popularity = '',
   releaseDate = '',
 }) => {
   return (
     <ScrollView>
-      <Center bgColor="#E8E9F3" flex={1} padding="$4">
-        <Heading size="2xl" fontFamily="heading" marginVertical="$4">
+      <Center bgColor="#E8E9F3" flex={1} padding="$4" minHeight="$full">
+        <Heading
+          size="2xl"
+          fontFamily="heading"
+          marginVertical="$4"
+          textAlign="center"
+        >
           {title}
         </Heading>
 
-        <VStack mb="$6" flex={1} width="100%">
-          {/* Image with half-screen height */}
+        <VStack mb="$6" flex={1} width="100%" gap="$4">
           <Image
             height={height * 0.4}
             width="full"
             marginVertical="$1.5"
-            marginHorizontal="$8"
+            marginHorizontal="$12"
             borderRadius="$md"
             source={
-              image.startsWith('http')
+              /\.(jpg|jpeg|png|svg)$/i.test(image)
                 ? { uri: image }
-                : require('../../../assets/icon.png')
+                : require('../../../assets/movie-poster.png')
             }
             alt="Media poster"
           />
 
-          <VStack flex={1} marginHorizontal="$4">
-            <Text
-              fontSize="$sm"
-              fontFamily="$heading"
-              lineHeight="$md"
-              sx={{
-                color: '$textLight700',
-                _dark: { color: '$textDark200' },
-              }}
-            >
-              {description}
+          <VStack flex={1} marginHorizontal="$4" gap="$2">
+            <Text fontSize="$sm" textAlign="justify" lineHeight="$md">
+              {description || "This title doesn't have an overview yet"}
             </Text>
 
             <HStack space="md" alignItems="center" mt="$2">
-              <Text
-                fontSize="$sm"
-                fontFamily="$heading"
-                lineHeight="$md"
-                sx={{
-                  color: '$textLight700',
-                  _dark: { color: '$textDark200' },
-                }}
-              >
-                Popularity: {popularity}
+              <Text fontSize="$sm" fontFamily="$heading" lineHeight="$md">
+                Popularity: {popularity || '-'}
               </Text>
               <Divider orientation="vertical" h="$4" backgroundColor="black" />
-              <Text
-                fontSize="$sm"
-                fontFamily="$heading"
-                lineHeight="$md"
-                sx={{
-                  color: '$textLight700',
-                  _dark: { color: '$textDark200' },
-                }}
-              >
-                Release Date: {releaseDate}
+              <Text fontSize="$sm" fontFamily="$heading" lineHeight="$md">
+                Release Date: {releaseDate || '-'}
               </Text>
             </HStack>
           </VStack>

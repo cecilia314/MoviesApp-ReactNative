@@ -11,10 +11,11 @@ import CustomButton from './CustomButton';
 const MediaCard = ({
   navigation,
   title = 'Movie title',
-  image = '../../assets/splash-icon',
-  url,
+  image = '../../../assets/movie-poster.png',
   popularity = '',
   releaseDate = '',
+  mediaId,
+  mediaType,
 }) => {
   return (
     <Card p="$5" m="$1.5" borderRadius="$lg">
@@ -24,12 +25,13 @@ const MediaCard = ({
           flex={1}
           borderRadius="$md"
           source={
-            image.startsWith('https')
+            /\.(jpg|jpeg|png|svg)$/i.test(image)
               ? { uri: image }
-              : require('../../../assets/icon.png')
+              : require('../../../assets/movie-poster.png')
           }
           alt="Media poster"
         />
+
         <VStack flex={2} gap="$2">
           <Heading size="sm" fontFamily="heading">
             {title}
@@ -62,7 +64,9 @@ const MediaCard = ({
 
           <CustomButton
             text="More Details"
-            onPressedBtn={() => navigation.navigate('Show', { url })}
+            onPressedBtn={() =>
+              navigation.navigate('Show', { mediaId, mediaType, title })
+            }
           />
         </VStack>
       </HStack>

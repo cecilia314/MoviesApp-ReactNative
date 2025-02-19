@@ -15,21 +15,28 @@ import {
 } from '@gluestack-ui/themed';
 import { ChevronDownIcon, CheckIcon } from '@gluestack-ui/themed';
 
-const CustomSelectInput = ({ mediaOptions, onInputChange, defaultOption }) => {
+const CustomSelectInput = ({
+  mediaOptions,
+  onInputChange,
+  defaultOption,
+  width = '$3/5',
+  flex = 1,
+  onError = false,
+}) => {
   const [newOption, setNewOption] = useState(defaultOption);
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <>
-      <ButtonGroup>
+      <ButtonGroup flex={flex}>
         <Button
-          width="$full"
+          width={width}
           variant="outline"
           onPress={() => setIsOpen(true)}
           flexDirection="row"
           justifyContent="space-between"
           alignItems="center"
-          borderColor="black"
+          borderColor={onError ? 'red' : '#272635'}
         >
           <ButtonText fontWeight="$bold" paddingHorizontal="$1" color="black">
             {newOption

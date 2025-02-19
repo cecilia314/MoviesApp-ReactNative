@@ -44,8 +44,6 @@ export const getTvSeries = async (category) => {
     const response = await axiosInstance.get(`/tv/${category}`, {
       params: { language: 'en-US', page: 1 },
     });
-
-    console.log('TV Series:', response.data);
     return response.data.results;
   } catch (error) {
     console.error(

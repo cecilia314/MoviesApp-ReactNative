@@ -17,21 +17,25 @@ const MoviesContainer = ({ navigation }) => {
 
     setIsLoading(true);
     try {
-      const response = await getMovies(selectedCategory);
-      setMovies(response);
-    } catch (error) {
-      console.error('Error fetching movies:', error);
-    } finally {
-      setIsLoading(false);
+      const data = await getMovies(selectedCategory);
+      setMovies(data);
+    } catch (err) {
+      console.error('Error fetching movies:', err);
     }
+
+    setIsLoading(false);
   };
 
   useEffect(() => {
     fetchMovies(category);
   }, []);
 
+  const handleShowMore = () => {
+    navigation.navigate('ShowAll', { category, mediaType: 'movie' });
+  };
+
   return (
-    <Center>
+    <Center mx="$2" mt="$4" gap="$12" h="$full">
       <CustomSelectInput
         mediaOptions={['now_playing', 'popular', 'top_rated', 'upcoming']}
         onInputChange={(newCategory) => {
@@ -44,7 +48,12 @@ const MoviesContainer = ({ navigation }) => {
       {isLoading ? (
         <Loading />
       ) : (
-        <MediaList navigation={navigation} media={movies} />
+        <MediaList
+          navigation={navigation}
+          media={movies}
+          mediaType="movie"
+          onShowMore={handleShowMore}
+        />
       )}
     </Center>
   );

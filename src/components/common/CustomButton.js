@@ -7,13 +7,19 @@ import {
 } from '@gluestack-ui/themed';
 import { SearchIcon } from '@gluestack-ui/themed';
 
-const CustomButton = ({ text, iconLeft = false, onPressedBtn }) => {
+const CustomButton = ({
+  text,
+  iconLeft = false,
+  onPressedBtn,
+  width = '$full',
+  flex = 1,
+}) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <ButtonGroup>
+    <ButtonGroup flex={flex}>
       <Button
-        width="$full"
+        width={width}
         bgColor={isHovered ? '#2B6CB0' : '#3c91e6'}
         onPress={onPressedBtn}
         onPressIn={() => setIsHovered(true)}
