@@ -15,7 +15,6 @@ const ShowContainer = ({ mediaId, mediaType }) => {
       getMovieDetail(mediaId)
         .then((data) => {
           setMedia(data);
-          console.log('Movie', data);
         })
         .catch((err) => console.error('API Error:', err));
     } else if (mediaType == 'tv') {

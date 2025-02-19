@@ -16,11 +16,13 @@ const MoviesContainer = ({ navigation }) => {
     if (!selectedCategory) return;
 
     setIsLoading(true);
-    getMovies(selectedCategory).then((data) => {
-      setMovies(data).catch((err) =>
-        console.error('Error fetching movies:', err)
-      );
-    });
+    try {
+      const data = await getMovies(selectedCategory);
+      setMovies(data);
+    } catch (err) {
+      console.error('Error fetching movies:', err);
+    }
+
     setIsLoading(false);
   };
 

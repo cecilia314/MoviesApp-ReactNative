@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   FormControl,
   FormControlLabelText,
@@ -10,9 +11,6 @@ import {
   InputIcon,
   SearchIcon,
   VStack,
-  useToast,
-  Toast,
-  ToastDescription,
 } from '@gluestack-ui/themed';
 import CustomSelectInput from '../common/CustomSelectInput';
 import CustomButton from '../common/CustomButton';
@@ -25,34 +23,31 @@ const Form = ({
   defaultOption,
   keyword,
 }) => {
-  const toast = useToast();
+  const [isError, setIsError] = useState(false);
 
   const handleSearch = () => {
     if (!keyword.trim()) {
-      toast.show({
-        placement: 'bottom',
-        render: () => (
-          <Toast action="warning">
-            <ToastDescription>Type a title in the box</ToastDescription>
-          </Toast>
-        ),
-      });
+      setIsError(true);
       return;
     }
+    setIsError(false);
     onSubmit();
   };
 
   return (
     <VStack width="100%" p="$4" my="$2">
-      <FormControl isRequired>
+      <FormControl isInvalid={isError} isRequired>
         <FormControl.Label fontSize="sm">
-          <FormControlLabelText>
-            Search Movie/ TV Show Name
-          </FormControlLabelText>
+          <FormControlLabelText>Search Movie/TV Show Name</FormControlLabelText>
         </FormControl.Label>
 
         <HStack width="100%" alignItems="center" pb="$4">
-          <Input flex={1} px="$3" alignItems="center">
+          <Input
+            flex={1}
+            px="$3"
+            alignItems="center"
+            borderColor={isError ? 'red' : '#272635'}
+          >
             <InputIcon>
               <Icon as={SearchIcon} size="sm" />
             </InputIcon>
@@ -70,11 +65,12 @@ const Form = ({
 
         <HStack width="100%" space="sm" alignItems="center">
           <CustomSelectInput
-            flex={2}
+            flex={1.5}
             width="$full"
             mediaOptions={mediaOptions}
             defaultOption={defaultOption}
             onInputChange={onInputCategoryChange}
+            onError={isError}
           />
 
           <CustomButton
@@ -86,8 +82,10 @@ const Form = ({
         </HStack>
 
         <FormControlHelper>
-          <FormControlHelperText>
-            Please select a search type
+          <FormControlHelperText color={isError ? 'red' : 'coolGray500'}>
+            {isError
+              ? 'Movie/TV show name is required'
+              : 'Please select a search type'}
           </FormControlHelperText>
         </FormControlHelper>
       </FormControl>

@@ -44,8 +44,6 @@ export const getTvSeries = async (category) => {
     const response = await axiosInstance.get(`/tv/${category}`, {
       params: { language: 'en-US', page: 1 },
     });
-
-    console.log('TV Series:', response.data);
     return response.data.results;
   } catch (error) {
     console.error(
@@ -72,7 +70,6 @@ export const getTvSerieDetail = async (serie_id) => {
 };
 
 export const getSearch = async (category, keyword) => {
-  console.log('PARAMETROS:', category, keyword);
   try {
     const response = await axiosInstance.get(`/search/${category}`, {
       params: {

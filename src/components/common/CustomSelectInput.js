@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Button,
   ButtonText,
@@ -21,6 +21,7 @@ const CustomSelectInput = ({
   defaultOption,
   width = '$3/5',
   flex = 1,
+  onError = false,
 }) => {
   const [newOption, setNewOption] = useState(defaultOption);
   const [isOpen, setIsOpen] = useState(false);
@@ -35,7 +36,7 @@ const CustomSelectInput = ({
           flexDirection="row"
           justifyContent="space-between"
           alignItems="center"
-          borderColor="#272635"
+          borderColor={onError ? 'red' : '#272635'}
         >
           <ButtonText fontWeight="$bold" paddingHorizontal="$1" color="black">
             {newOption

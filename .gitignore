@@ -37,3 +37,6 @@ apiConfig.js
 
 # typescript
 *.tsbuildinfo
+
+
+node_modules/
